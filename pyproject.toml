@@ -11,8 +11,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openstack-network-agents"
-version = "2025.1"
-requires-python = "~=3.12.0"
+version = "2026.1"
+requires-python = "~=3.14.0"
 license-files = ["LICENSE"]
 description = "Network agents component of OpenStack"
 readme = "README.md"
@@ -26,7 +26,7 @@ classifiers = [
     "Operation System :: POSIX :: Linux",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.14",
 ]
 
 dependencies = [
@@ -74,7 +74,7 @@ log_cli_level = "INFO"
 # Formatting tools configuration
 [tool.black]
 line-length = 99
-target-version = ["py312"]
+target-version = ["py314"]
 
 [tool.isort]
 profile = "black"

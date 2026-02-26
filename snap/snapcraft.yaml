@@ -20,16 +20,12 @@ issues:
   - https://bugs.launchpad.net/snap-openstack-network-agents
 source-code:
   - https://github.com/canonical/snap-openstack-network-agents
-base: core24
-version: "2025.1"
+base: core26
+build-base: devel
+version: "2026.1"
 license: Apache-2.0
-grade: stable
+grade: devel
 confinement: strict
-
-package-repositories:
-  - type: apt
-    cloud: epoxy
-    priority: always
 
 platforms:
   amd64:
@@ -49,7 +45,7 @@ apps:
   openstack-network-agents:
     environment:
       # Ensure site packages are loaded first
-      PYTHONPATH: $SNAP/usr/lib/python3.12:$SNAP/usr/lib/python3.12/site-packages:$SNAP/lib/python3.12:$SNAP/lib/python3.12/site-packages:$SNAP/usr/lib/python3/dist-packages:$PYTHONPATH
+      PYTHONPATH: $SNAP/usr/lib/python3.14:$SNAP/usr/lib/python3.14/site-packages:$SNAP/lib/python3.14:$SNAP/lib/python3.14/site-packages:$SNAP/usr/lib/python3/dist-packages:$PYTHONPATH
     command: bin/openstack-network-agents
     plugs:
       - network
@@ -59,7 +55,7 @@ apps:
 
 parts:
   openstack-network-agents:
-    plugin: python
+    plugin: uv
     source: .
     build-snaps: [astral-uv]
     build-packages:
@@ -68,10 +64,8 @@ parts:
       - rustc
     stage-packages:
       - openvswitch-switch
-    python-requirements:
-      - requirements.txt
+      - python3-venv
     override-build: |
-      uv export --frozen --no-hashes --format=requirements-txt -o requirements.txt
       craftctl default
       snap-helpers write-hooks
 
