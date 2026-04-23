@@ -45,6 +45,7 @@ dev= [
     "ruff",
     "mypy"
 ]
+tics = ["pylint", "flake8"]
 
 [project.urls]
 "Homepage" = "https://github.com/canonical/snap-openstack-network-agents"
